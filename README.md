@@ -1,2 +1,3 @@
 # ruby-docker
-Minimalistic ruby base image
+
+Slim debian based ruby base image
