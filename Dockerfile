@@ -1,6 +1,7 @@
 ARG ZLIB_VERSION=1:1.2.11.dfsg-1
 ARG CA_CERTIFICATES_VERSION=20190110
 ARG GNUPG_VERSION=2.2.12-1+deb10u1
+ARG BUILD_ESSENTIAL_VERSION=12.6
 
 FROM debian:10.3-slim as buster
 FROM buster as ruby-install
@@ -8,8 +9,8 @@ FROM buster as ruby-install
 ARG ZLIB_VERSION
 ARG CA_CERTIFICATES_VERSION
 ARG GNUPG_VERSION
+ARG BUILD_ESSENTIAL_VERSION
 
-ARG BUILD_ESSENTIAL_VERSION=12.6
 ARG LIBFFI_VERSION=3.2.1-9
 ARG CURL_VERSION=7.64.0-4+deb10u1
 ARG CA_CERTIFICATES_VERSION=20190110
@@ -75,6 +76,7 @@ RUN set -eux; \
 
 FROM buster
 
+ARG BUILD_ESSENTIAL_VERSION
 ARG ZLIB_VERSION
 ARG CA_CERTIFICATES_VERSION
 ARG GNUPG_VERSION
@@ -97,9 +99,10 @@ RUN ln -s /usr/local/ruby/bin/ruby /usr/bin/ruby && \
 RUN set -eux; \
     apt-get update; \
     apt-get install -y --no-install-recommends \
+      build-essential=${BUILD_ESSENTIAL_VERSION} \
       zlib1g-dev=${ZLIB_VERSION} \
       ca-certificates=${CA_CERTIFICATES_VERSION} \
       gnupg2=${GNUPG_VERSION}; \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* /tmp/*
 
 COPY --from=ruby-install /usr/local/ruby /usr/local/ruby
