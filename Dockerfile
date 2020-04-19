@@ -27,8 +27,8 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 # Install build dependencies
 RUN set -eux; \
-    apt-get update; \
-    apt-get install -y --no-install-recommends \
+    apt update; \
+    apt install -y --no-install-recommends \
       build-essential=${BUILD_ESSENTIAL_VERSION} \
       libffi-dev=${LIBFFI_VERSION} \
       zlib1g-dev=${ZLIB_VERSION} \
@@ -86,19 +86,13 @@ ARG DEBIAN_FRONTEND=noninteractive
 # Set environment
 ENV PATH=/usr/local/ruby/bin:$PATH
 
-# Set default bundler config
+# Silence bundler root warning
 ENV BUNDLE_SILENCE_ROOT_WARNING=1
-
-# Symlink ruby executables to be available from crontab
-RUN ln -s /usr/local/ruby/bin/ruby /usr/bin/ruby && \
-    ln -s /usr/local/ruby/bin/gem /usr/bin/gem && \
-    ln -s /usr/local/ruby/bin/rake /usr/bin/rake && \
-    ln -s /usr/local/ruby/bin/bundle /usr/bin/bundle
 
 # Install some essential system libs
 RUN set -eux; \
-    apt-get update; \
-    apt-get install -y --no-install-recommends \
+    apt update; \
+    apt install -y --no-install-recommends \
       build-essential=${BUILD_ESSENTIAL_VERSION} \
       zlib1g-dev=${ZLIB_VERSION} \
       ca-certificates=${CA_CERTIFICATES_VERSION} \
