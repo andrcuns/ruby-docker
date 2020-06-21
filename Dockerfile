@@ -1,6 +1,6 @@
 ARG ZLIB_VERSION=1:1.2.11.dfsg-1
 ARG CA_CERTIFICATES_VERSION=20190110
-ARG GNUPG_VERSION=2.2.12-1+deb10u1
+ARG GNUPG_VERSION=2.2.12-1*
 ARG BUILD_ESSENTIAL_VERSION=12.6
 
 FROM debian:10.4-slim as buster
@@ -12,9 +12,9 @@ ARG GNUPG_VERSION
 ARG BUILD_ESSENTIAL_VERSION
 
 ARG LIBFFI_VERSION=3.2.1-9
-ARG CURL_VERSION=7.64.0-4+deb10u1
+ARG CURL_VERSION=7.64.0-4*
 ARG CA_CERTIFICATES_VERSION=20190110
-ARG OPENSSL_VERSION=1.1.1d-0+deb10u2
+ARG OPENSSL_VERSION=1.1.1d-0*
 ARG READLINE_VERSION=7.0-5
 
 ARG RUBY_MINOR_VERSION=2.6
@@ -27,8 +27,8 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 # Install build dependencies
 RUN set -eux; \
-    apt update; \
-    apt install -y --no-install-recommends \
+    apt-get update; \
+    apt-get install -y --no-install-recommends \
       build-essential=${BUILD_ESSENTIAL_VERSION} \
       libffi-dev=${LIBFFI_VERSION} \
       zlib1g-dev=${ZLIB_VERSION} \
@@ -91,8 +91,8 @@ ENV BUNDLE_SILENCE_ROOT_WARNING=1
 
 # Install some essential system libs
 RUN set -eux; \
-    apt update; \
-    apt install -y --no-install-recommends \
+    apt-get update; \
+    apt-get install -y --no-install-recommends \
       build-essential=${BUILD_ESSENTIAL_VERSION} \
       zlib1g-dev=${ZLIB_VERSION} \
       ca-certificates=${CA_CERTIFICATES_VERSION} \
