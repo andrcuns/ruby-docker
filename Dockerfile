@@ -81,6 +81,8 @@ ARG ZLIB_VERSION
 ARG CA_CERTIFICATES_VERSION
 ARG GNUPG_VERSION
 
+ARG GIT_VERSION=1:2.20.1-2*
+
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Set environment
@@ -96,7 +98,8 @@ RUN set -eux; \
       build-essential=${BUILD_ESSENTIAL_VERSION} \
       zlib1g-dev=${ZLIB_VERSION} \
       ca-certificates=${CA_CERTIFICATES_VERSION} \
-      gnupg2=${GNUPG_VERSION}; \
+      gnupg2=${GNUPG_VERSION} \
+      git=${GIT_VERSION}; \
     rm -rf /var/lib/apt/lists/* /tmp/*
 
 COPY --from=ruby-install /usr/local/ruby /usr/local/ruby
