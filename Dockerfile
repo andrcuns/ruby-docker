@@ -3,7 +3,7 @@ ARG CA_CERTIFICATES_VERSION=20190110
 ARG GNUPG_VERSION=2.2.12-1*
 ARG BUILD_ESSENTIAL_VERSION=12.6
 
-FROM debian:10.5-slim as buster
+FROM debian:10.6-slim as buster
 FROM buster as ruby-install
 
 ARG ZLIB_VERSION
