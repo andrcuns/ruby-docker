@@ -18,3 +18,4 @@ jobs:
         with:
           push: false
           tags: andrcuns/ruby:latest
+          cache-from: type=registry,ref=andrcuns/ruby:latest
