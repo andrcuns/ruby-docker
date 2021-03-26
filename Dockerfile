@@ -13,7 +13,6 @@ ARG CA_CERTIFICATES_VERSION
 ARG GNUPG_VERSION
 ARG BUILD_ESSENTIAL_VERSION
 ARG READLINE_VERSION
-ARG SHARED_MIME_INFO
 
 ARG LIBFFI_VERSION=3.2.1-9
 ARG CURL_VERSION=7.64.0-4*
@@ -37,8 +36,7 @@ RUN set -eux; \
       curl=${CURL_VERSION} \
       ca-certificates=${CA_CERTIFICATES_VERSION} \
       libssl-dev=${OPENSSL_VERSION} \
-      libreadline-dev=${READLINE_VERSION} \
-      shared-mime-info=${SHARED_MIME_INFO}; \
+      libreadline-dev=${READLINE_VERSION}; \
     rm -rf /var/lib/apt/lists/*
 
 # Set environment
@@ -84,6 +82,7 @@ ARG ZLIB_VERSION
 ARG CA_CERTIFICATES_VERSION
 ARG GNUPG_VERSION
 ARG READLINE_VERSION
+ARG SHARED_MIME_INFO
 
 ARG GIT_VERSION=1:2.20.1-2*
 
@@ -104,7 +103,8 @@ RUN set -eux; \
       ca-certificates=${CA_CERTIFICATES_VERSION} \
       gnupg2=${GNUPG_VERSION} \
       git=${GIT_VERSION} \
-      libreadline-dev=${READLINE_VERSION}; \
+      libreadline-dev=${READLINE_VERSION} \
+      shared-mime-info=${SHARED_MIME_INFO}; \
     rm -rf /var/lib/apt/lists/* /tmp/*
 
 COPY --from=ruby-install /usr/local/ruby /usr/local/ruby
