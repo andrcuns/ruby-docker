@@ -10,3 +10,11 @@ updates:
   - andrcuns
   assignees:
   - andrcuns
+- package-ecosystem: github-actions
+  directory: "/"
+  schedule:
+    interval: "daily"
+    time: "02:00"
+  open-pull-requests-limit: 10
+  reviewers:
+  - andrcuns
