@@ -3,6 +3,7 @@ ARG CA_CERTIFICATES_VERSION=20200601*
 ARG GNUPG_VERSION=2.2.12-1*
 ARG BUILD_ESSENTIAL_VERSION=12.6
 ARG READLINE_VERSION=7.0-5
+ARG SHARED_MIME_INFO=1.10-1
 
 FROM debian:10.8-slim as buster
 FROM buster as ruby-install
@@ -12,6 +13,7 @@ ARG CA_CERTIFICATES_VERSION
 ARG GNUPG_VERSION
 ARG BUILD_ESSENTIAL_VERSION
 ARG READLINE_VERSION
+ARG SHARED_MIME_INFO
 
 ARG LIBFFI_VERSION=3.2.1-9
 ARG CURL_VERSION=7.64.0-4*
@@ -35,7 +37,8 @@ RUN set -eux; \
       curl=${CURL_VERSION} \
       ca-certificates=${CA_CERTIFICATES_VERSION} \
       libssl-dev=${OPENSSL_VERSION} \
-      libreadline-dev=${READLINE_VERSION}; \
+      libreadline-dev=${READLINE_VERSION} \
+      shared-mime-info=${SHARED_MIME_INFO}; \
     rm -rf /var/lib/apt/lists/*
 
 # Set environment
