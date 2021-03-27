@@ -82,7 +82,6 @@ ARG CA_CERTIFICATES_VERSION
 ARG GNUPG_VERSION
 ARG READLINE_VERSION
 
-ARG SHARED_MIME_INFO=1.10-1
 ARG SSH_CLIENT=1:7.9p1*
 ARG GIT_VERSION=1:2.20.1-2*
 
@@ -104,7 +103,6 @@ RUN set -eux; \
       ca-certificates=${CA_CERTIFICATES_VERSION} \
       gnupg2=${GNUPG_VERSION} \
       libreadline-dev=${READLINE_VERSION} \
-      shared-mime-info=${SHARED_MIME_INFO} \
       openssh-client=${SSH_CLIENT}; \
     rm -rf /var/lib/apt/lists/* /tmp/*
 
