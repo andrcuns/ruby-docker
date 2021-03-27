@@ -84,6 +84,7 @@ ARG READLINE_VERSION
 
 ARG SHARED_MIME_INFO=1.10-1
 ARG SSH_CLIENT=1:7.9p1*
+ARG GIT_VERSION=1:2.20.1-2*
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -98,6 +99,7 @@ RUN set -eux; \
     apt-get update; \
     apt-get install -y --no-install-recommends \
       build-essential=${BUILD_ESSENTIAL_VERSION} \
+      git=${GIT_VERSION} \
       zlib1g-dev=${ZLIB_VERSION} \
       ca-certificates=${CA_CERTIFICATES_VERSION} \
       gnupg2=${GNUPG_VERSION} \
