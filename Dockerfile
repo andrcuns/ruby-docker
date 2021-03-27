@@ -3,7 +3,6 @@ ARG CA_CERTIFICATES_VERSION=20200601*
 ARG GNUPG_VERSION=2.2.12-1*
 ARG BUILD_ESSENTIAL_VERSION=12.6
 ARG READLINE_VERSION=7.0-5
-ARG SHARED_MIME_INFO=1.10-1
 
 FROM debian:10.8-slim as buster
 FROM buster as ruby-install
@@ -82,9 +81,9 @@ ARG ZLIB_VERSION
 ARG CA_CERTIFICATES_VERSION
 ARG GNUPG_VERSION
 ARG READLINE_VERSION
-ARG SHARED_MIME_INFO
 
-ARG GIT_VERSION=1:2.20.1-2*
+ARG SHARED_MIME_INFO=1.10-1
+ARG SSH_CLIENT=1:7.9p1*
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -102,9 +101,9 @@ RUN set -eux; \
       zlib1g-dev=${ZLIB_VERSION} \
       ca-certificates=${CA_CERTIFICATES_VERSION} \
       gnupg2=${GNUPG_VERSION} \
-      git=${GIT_VERSION} \
       libreadline-dev=${READLINE_VERSION} \
-      shared-mime-info=${SHARED_MIME_INFO}; \
+      shared-mime-info=${SHARED_MIME_INFO} \
+      openssh-client=${SSH_CLIENT}; \
     rm -rf /var/lib/apt/lists/* /tmp/*
 
 COPY --from=ruby-install /usr/local/ruby /usr/local/ruby
